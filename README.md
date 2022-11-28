@@ -6,6 +6,10 @@ Desarrollado por [Darkiox](https://github.com/darkiox) y [JavierGv1](https://git
 
 [![Video](https://img.youtube.com/vi/y7Hw4lUdbAA/maxresdefault.jpg)](https://youtu.be/y7Hw4lUdbAA)
 
+## Diagrama
+
+![Diagrama](https://i.imgur.com/ktC8lKX.png)
+
 ## Qué hacer antes de correr contenedor
 
 	python3 wikipedia.py
