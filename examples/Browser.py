@@ -1,5 +1,5 @@
 import wikipediaapi
-
+import re
 wiki_wiki = wikipediaapi.Wikipedia('en')
 
 f= open('titles.txt', 'r')
@@ -28,18 +28,23 @@ for word in search:
             for i in wordcount:
                 encontrado = True
                 article = i.split(':')
+                article[1] = re.sub("[^0-9]+", "",article[1])
                 if article[0] in InvertIndex:
                     count = InvertIndex[article[0]]
-                    InvertIndex.update({article[0]: count+1})
+                    InvertIndex.update({article[0]: int(count)+int(article[1])})
                 else:
-                    InvertIndex.update({article[0]: 1})
+                    InvertIndex.update({article[0]: int(article[1])})
 
 if encontrado:
     maxArticle = max(InvertIndex.values())
     article = max(InvertIndex, key=InvertIndex.get)
-    article = titles[article[1:-1]]
-    page_py = wiki_wiki.page(article[:-1])
-    print('El articulo que busca es: ',article[:-1])
-    print('URL: ',page_py.fullurl)   
+    print('El numero del articulo es: ',article)
+    article = re.sub("[^0-9]+", "",article)
+    article = titles[article][:-1]
+    print('El articulo que busca es: ',article)
+    page_py = wiki_wiki.page(article)
+    print('URL:',page_py.fullurl)
+                
 else:
     print('Palabras no encontradas.')
+
